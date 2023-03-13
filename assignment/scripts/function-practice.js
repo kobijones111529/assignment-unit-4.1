@@ -101,11 +101,18 @@ logTestCase(`isFirstLetter(undefined, '')`, false, isFirstLetter(undefined, ''))
 
 
 // 9. Function to return the sum of all numbers in an array
-function sumAll() {
-  let sum = 0
-  // TODO: loop to add items
+function sumAll(array) {
+  let sum = 0;
+  for (const elem of array) {
+    sum += elem;
+  }
   return sum;
 }
+
+logTestCase(`sumAll([1, 2, 3])`, 6, sumAll([1, 2, 3]));
+logTestCase(`sumAll([])`, 0, sumAll([]))
+logTestCase(`sumAll(-10, -100, -1)`, -111, sumAll([-10, -100, -1]))
+
 
 // 10. Function to return a new array of all positive (greater than zero)
 //     numbers contained in an input array. If there are no positive numbers
