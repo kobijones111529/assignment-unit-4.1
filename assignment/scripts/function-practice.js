@@ -71,7 +71,8 @@ logTestCase(`getLast([])`, undefined, getLast([]));
 //    DO NOT use Array.includes, Array.indexOf, or Array.find 
 function find(value, array){
   for (const elem of array) {
-    if (elem === value) return true;
+    if (elem === value)
+      return true;
   }
 
   return false;
