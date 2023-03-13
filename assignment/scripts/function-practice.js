@@ -88,10 +88,16 @@ logTestCase(`find(null, [])`, false, find(null, []))
 // 8. Function to check if a letter is the first letter in a 
 //    string. Return true if it is, and false otherwise
 function isFirstLetter(letter, string) {
+  if (string.length < 1)
+    return false;
 
+  return string[0] === letter;
 }
-console.log('isFirstLetter - should say true', isFirstLetter('a', 'apple'));
-console.log('isFirstLetter - should say false', isFirstLetter('z', 'apple'));
+
+logTestCase(`isFirstLetter('a', 'apple')`, true, isFirstLetter('a', 'apple'));
+logTestCase(`isFirstLetter('z', 'apple')`, false, isFirstLetter('z', 'apple'));
+logTestCase(`isFirstLetter(undefined, '')`, false, isFirstLetter(undefined, ''));
+
 
 // 9. Function to return the sum of all numbers in an array
 function sumAll() {
