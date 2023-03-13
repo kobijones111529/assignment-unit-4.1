@@ -1,5 +1,10 @@
 console.log('***** Function Practice *****')
 
+const logTestCase = (test, expected, actual) => {
+  console.assert(actual === expected, `${test} should return ${expected}\n`, actual);
+  console.log(`Test - ${test} should return ${expected}\n`, actual);
+};
+
 // Add the required code to complete the functions below
 // After _each_ function, use a console log to call the function
 // to test it and display the result
@@ -18,8 +23,7 @@ function helloName(name) {
   return `Hello, ${name}!`;
 }
 // Remember to call the function to test
-console.assert(helloName('Kobi') === 'Hello, Kobi!', `helloName('Kobi') should be 'Hello, Kobi!'`);
-console.log('helloName(\'Kobi\'):', helloName('Kobi'));
+logTestCase(`helloName('Kobi')`, 'Hello, Kobi!', helloName('Kobi'));
 
 
 // 3. Function to add two numbers together & return the result
@@ -27,10 +31,8 @@ function addNumbers(firstNumber, secondNumber) {
   return firstNumber + secondNumber;
 }
 
-console.assert(addNumbers(1, 2) === 3, `addNumbers(1, 2) should be 3`);
-console.assert(addNumbers(-10, 0.5) === -9.5, `addNumbers(-10, 0.5) should be -9.5`);
-console.log('addNumbers(1, 2):', addNumbers(1, 2));
-console.log('addNumbers(-10, 0.5):', addNumbers(-10, 0.5));
+logTestCase(`addNumbers(1, 2)`, 3, addNumbers(1, 2));
+logTestCase(`addNumbers(-10, 0.5)`, -9.5, addNumbers(-10, 0.5));
 
 
 // 4. Function to multiply three numbers & return the result
@@ -38,10 +40,8 @@ function multiplyThree(a, b, c){
   return a * b * c;
 }
 
-console.assert(multiplyThree(0, 2, -1) === 0, 'multiplyThree(0, 2, -1) should be 0');
-console.assert(multiplyThree(0.5, 2, -4) === -4, 'multiplyThree(0.5, 2, -4) should be -4');
-console.log('multiplyThree(0, 2, -1):', multiplyThree(0, 2, -1));
-console.log('multiplyThree(0.5, 2, -4):', multiplyThree(0.5, 2, -4));
+logTestCase(`multiplyThree(0, 2, -1)`, 0, multiplyThree(0, 2, -1));
+logTestCase(`multiplyThree(0.5, 2, -4)`, -4, multiplyThree(0.5, 2, -4));
 
 
 // 5. Function that will return true if a number is positive, 
@@ -62,10 +62,8 @@ function getLast(array) {
   return array[array.length - 1];
 }
 
-console.assert(getLast([1, 2, 3]) === 3, 'getLast([1, 2, 3]) should be 3');
-console.assert(getLast([]) === undefined, 'getLast([]) should be undefined');
-console.log('getLast([1, 2, 3]):', getLast([1, 2, 3]));
-console.log('getLast([]):', getLast([]));
+logTestCase(`getLast([1, 2, 3])`, 3, getLast([1, 2, 3]));
+logTestCase(`getLast([])`, undefined, getLast([]));
 
 
 // 7. Function to find a value in an array. Return true if the 
