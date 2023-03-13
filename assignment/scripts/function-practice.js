@@ -70,8 +70,17 @@ logTestCase(`getLast([])`, undefined, getLast([]));
 //    value is found and false otherwise. Use a loop;
 //    DO NOT use Array.includes, Array.indexOf, or Array.find 
 function find(value, array){
-  
+  for (const elem of array) {
+    if (elem === value) return true;
+  }
+
+  return false;
 }
+
+logTestCase(`find(2, [1, 2])`, true, find(2, [1, 2]))
+logTestCase(`find(true, [false, false, false])`, false, find(true, [false, false, false]))
+logTestCase(`find(null, [])`, false, find(null, []))
+
 
 // ----------------------
 // Stretch Goals
