@@ -146,3 +146,21 @@ logTestCase(`filterPositive([-1, 0, -2])`, [], filterPositive([-1, 0, -2]), arra
 // 11. Pick a problem from Edabit(https://edabit.com/) or 
 //     CodeWars(https://www.codewars.com/). Then describe it 
 //     here in a comment, write the function, and test it!
+
+// Problem: Currying vs. Partial Application (https://www.codewars.com/kata/53cf7e37e9876c35a60002c9)
+/**
+ * For a given function, creates a function with the same body
+ * but whose arguments can be curried and/or partially applied
+ * @param {function} fn - Function
+ * @param  {...any} args - Optional arguments to apply
+ */
+function curryPartial(fn, ...args) {
+  const boundFn = fn.bind(null, ...args);
+  if (boundFn.length === 0)
+    return boundFn();
+
+  return curryPartial.bind(null, boundFn);
+}
+
+logTestCase(`curryPartial((a, b, c) => a + b + c, 1)(2, 3)`, 6, curryPartial((a, b ,c) => a + b + c, 1)(2, 3))
+logTestCase(`curryPartial(isFirstLetter)('a')('apple')`, isFirstLetter('a', 'apple'), curryPartial(isFirstLetter)('a')('apple'));
