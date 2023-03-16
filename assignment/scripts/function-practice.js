@@ -1,5 +1,22 @@
 console.log('***** Function Practice *****')
 
+/**
+ * Utility function to compare two arrays
+ * @param {any[]} a First array
+ * @param {any[]} b Second array
+ */
+function arraysEqual(a, b) {
+  if (a.length != b.length)
+    return false;
+
+  for (const i in a) {
+    if (a[i] !== b[i])
+      return false;
+  }
+
+  return true;
+}
+
 function logTestCase(test, expected, actual, eq = (a, b) => a === b) {
   console.assert(eq(actual, expected), `${test} should return`, expected, '\n', actual);
   console.log(`Test - ${test} should return`, expected, '\n', actual);
@@ -126,18 +143,6 @@ function filterPositive(array) {
   return positive;
 }
 
-function arraysEqual(xs, ys) {
-  if (xs.length != ys.length)
-    return false;
-
-  for (let i = 0; i < xs.length; i++) {
-    if (xs[i] !== ys[i])
-      return false;
-  }
-
-  return true;
-}
-
 logTestCase(`filterPositive([])`, [], filterPositive([]), arraysEqual);
 logTestCase(`filterPositive([2, 4, 0, -1, 2, -4])`, [2, 4, 2], filterPositive([2, 4, 0, -1, 2, -4]), arraysEqual)
 logTestCase(`filterPositive([-1, 0, -2])`, [], filterPositive([-1, 0, -2]), arraysEqual)
@@ -147,10 +152,14 @@ logTestCase(`filterPositive([-1, 0, -2])`, [], filterPositive([-1, 0, -2]), arra
 //     CodeWars(https://www.codewars.com/). Then describe it 
 //     here in a comment, write the function, and test it!
 
-// Problem: Currying vs. Partial Application (https://www.codewars.com/kata/53cf7e37e9876c35a60002c9)
+// Problem: Currying vs. Partial Application
+// (https://www.codewars.com/kata/53cf7e37e9876c35a60002c9)
 /**
  * For a given function, creates a function with the same body
  * but whose arguments can be curried and/or partially applied
+ *
+ * Note: The this object is overriden by {@link Function.prototype.bind},
+ * so any function using the this object will not work
  * @param {function} fn - Function
  * @param  {...any} args - Optional arguments to apply
  */
@@ -162,5 +171,8 @@ function curryPartial(fn, ...args) {
   return curryPartial.bind(null, boundFn);
 }
 
-logTestCase(`curryPartial((a, b, c) => a + b + c, 1)(2, 3)`, 6, curryPartial((a, b ,c) => a + b + c, 1)(2, 3))
-logTestCase(`curryPartial(isFirstLetter)('a')('apple')`, isFirstLetter('a', 'apple'), curryPartial(isFirstLetter)('a')('apple'));
+logTestCase(`curryPartial((a, b, c) => a + b + c, 1)(2, 3)`, 6, curryPartial((a, b, c) => a + b + c, 1)(2, 3))
+
+let isFirstLetterA = curryPartial(isFirstLetter)('a');
+logTestCase(`curryPartial(isFirstLetter)('a')('apple')`, isFirstLetter('a', 'apple'), isFirstLetterA('apple'));
+logTestCase(`curryPartial(isFirstLetterA)('a')('banana')`, isFirstLetter('a', 'banana'), isFirstLetterA('banana'));
