@@ -4,6 +4,7 @@ console.log('***** Function Practice *****')
  * Utility function to compare two arrays
  * @param {any[]} a First array
  * @param {any[]} b Second array
+ * @returns {boolean}
  */
 function arraysEqual(a, b) {
   if (a.length != b.length)
@@ -18,6 +19,7 @@ function arraysEqual(a, b) {
 }
 
 function logTestCase(test, expected, actual, eq = (a, b) => a === b) {
+  // Assert before logging so I can find failed tests easily
   console.assert(eq(actual, expected), `${test} should return`, expected, '\n', actual);
   console.log(`Test - ${test} should return`, expected, '\n', actual);
 }
