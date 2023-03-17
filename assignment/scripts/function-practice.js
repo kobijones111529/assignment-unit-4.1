@@ -1,4 +1,4 @@
-console.log('***** Function Practice *****')
+console.log('***** Function Practice *****');
 
 /**
  * Utility function to compare two arrays
@@ -19,9 +19,14 @@ function arraysEqual(a, b) {
 }
 
 function logTestCase(test, expected, actual, eq = (a, b) => a === b) {
+  const css = `
+    font-family: 'Courier New';
+    font-weight: lighter;
+    font-size: 1.2em;
+  `;
   // Assert before logging so I can find failed tests easily
-  console.assert(eq(actual, expected), `${test} should return`, expected, '\n', actual);
-  console.log(`Test - ${test} should return`, expected, '\n', actual);
+  console.assert(eq(actual, expected), '%c%s%c should return %o:\n%o', css, test, null, expected, actual);
+  console.log('Test — %c%s%c should return %o:\n%o', css, test, null, expected, actual);
 }
 
 // Add the required code to complete the functions below
@@ -55,7 +60,7 @@ logTestCase(`addNumbers(-10, 0.5)`, -9.5, addNumbers(-10, 0.5));
 
 
 // 4. Function to multiply three numbers & return the result
-function multiplyThree(a, b, c){
+function multiplyThree(a, b, c) {
   return a * b * c;
 }
 
@@ -88,7 +93,7 @@ logTestCase(`getLast([])`, undefined, getLast([]));
 // 7. Function to find a value in an array. Return true if the 
 //    value is found and false otherwise. Use a loop;
 //    DO NOT use Array.includes, Array.indexOf, or Array.find 
-function find(value, array){
+function find(value, array) {
   for (const elem of array) {
     if (elem === value)
       return true;
@@ -97,9 +102,13 @@ function find(value, array){
   return false;
 }
 
-logTestCase(`find(2, [1, 2])`, true, find(2, [1, 2]))
-logTestCase(`find(true, [false, false, false])`, false, find(true, [false, false, false]))
-logTestCase(`find(null, [])`, false, find(null, []))
+logTestCase(`find(2, [1, 2])`, true, find(2, [1, 2]));
+logTestCase(
+  `find(true, [false, false, false])`,
+  false,
+  find(true, [false, false, false])
+);
+logTestCase(`find(null, [])`, false, find(null, []));
 
 
 // ----------------------
@@ -116,7 +125,11 @@ function isFirstLetter(letter, string) {
 
 logTestCase(`isFirstLetter('a', 'apple')`, true, isFirstLetter('a', 'apple'));
 logTestCase(`isFirstLetter('z', 'apple')`, false, isFirstLetter('z', 'apple'));
-logTestCase(`isFirstLetter(undefined, '')`, false, isFirstLetter(undefined, ''));
+logTestCase(
+  `isFirstLetter(undefined, '')`,
+  false,
+  isFirstLetter(undefined, '')
+);
 
 
 // 9. Function to return the sum of all numbers in an array
@@ -129,8 +142,8 @@ function sumAll(array) {
 }
 
 logTestCase(`sumAll([1, 2, 3])`, 6, sumAll([1, 2, 3]));
-logTestCase(`sumAll([])`, 0, sumAll([]))
-logTestCase(`sumAll(-10, -100, -1)`, -111, sumAll([-10, -100, -1]))
+logTestCase(`sumAll([])`, 0, sumAll([]));
+logTestCase(`sumAll(-10, -100, -1)`, -111, sumAll([-10, -100, -1]));
 
 
 // 10. Function to return a new array of all positive (greater than zero)
@@ -146,8 +159,18 @@ function filterPositive(array) {
 }
 
 logTestCase(`filterPositive([])`, [], filterPositive([]), arraysEqual);
-logTestCase(`filterPositive([2, 4, 0, -1, 2, -4])`, [2, 4, 2], filterPositive([2, 4, 0, -1, 2, -4]), arraysEqual)
-logTestCase(`filterPositive([-1, 0, -2])`, [], filterPositive([-1, 0, -2]), arraysEqual)
+logTestCase(
+  `filterPositive([2, 4, 0, -1, 2, -4])`,
+  [2, 4, 2],
+  filterPositive([2, 4, 0, -1, 2, -4]),
+  arraysEqual
+);
+logTestCase(
+  `filterPositive([-1, 0, -2])`,
+  [],
+  filterPositive([-1, 0, -2]),
+  arraysEqual
+);
 
 
 // 11. Pick a problem from Edabit(https://edabit.com/) or 
@@ -173,8 +196,20 @@ function curryPartial(fn, ...args) {
   return curryPartial.bind(null, boundFn);
 }
 
-logTestCase(`curryPartial((a, b, c) => a + b + c, 1)(2, 3)`, 6, curryPartial((a, b, c) => a + b + c, 1)(2, 3))
+logTestCase(
+  `curryPartial((a, b, c) => a + b + c, 1)(2, 3)`,
+  6,
+  curryPartial((a, b, c) => a + b + c, 1)(2, 3)
+);
 
 let isFirstLetterA = curryPartial(isFirstLetter)('a');
-logTestCase(`curryPartial(isFirstLetter)('a')('apple')`, isFirstLetter('a', 'apple'), isFirstLetterA('apple'));
-logTestCase(`curryPartial(isFirstLetterA)('a')('banana')`, isFirstLetter('a', 'banana'), isFirstLetterA('banana'));
+logTestCase(
+  `curryPartial(isFirstLetterA)('apple')`,
+  isFirstLetter('a', 'apple'),
+  isFirstLetterA('apple')
+);
+logTestCase(
+  `curryPartial(isFirstLetterA)('banana')`,
+  isFirstLetter('a', 'banana'),
+  isFirstLetterA('banana')
+);
