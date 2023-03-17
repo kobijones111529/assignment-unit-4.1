@@ -29,7 +29,7 @@ function logTestCase(test, expected, actual, eq = (a, b) => a === b) {
     [css, test, null, expected, actual];
   // Assert before logging so I can find failed tests easily
   console.assert(eq(actual, expected), msg, ...msgArgs);
-  console.log('Test —' + msg, ...msgArgs);
+  console.log('Test — ' + msg, ...msgArgs);
 }
 
 // Add the required code to complete the functions below
